@@ -99,6 +99,7 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:background="@drawable/bagound"
+        android:drawableEnd="@drawable/ic_start"
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="16dp"
         android:ems="10"

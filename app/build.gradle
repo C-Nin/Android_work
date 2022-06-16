@@ -38,8 +38,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //picture
     implementation 'com.linchaolong.android:imagepicker:1.5'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
     //http
     compile files('libs/fastjson-1.2.5.jar')
-    compile 'org.xutils:xutils:3.3.40'
+    implementation 'org.xutils:xutils:3.3.40'
 }

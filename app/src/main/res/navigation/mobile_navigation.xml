@@ -48,4 +48,20 @@
         android:id="@+id/nav_editbook"
         android:name="com.example.navigationview.ui.library.EditBookFragment"
         android:label="产品信息修改" />
+    <activity
+        android:id="@+id/login"
+        android:name="com.example.navigationview.Login"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/registeredActivity"
+        android:name="com.example.navigationview.RegisteredActivity"
+        android:label="activity_registered"
+        tools:layout="@layout/activity_registered" />
+    <fragment
+        android:id="@+id/me"
+        android:name="com.example.navigationview.ui.me.me"
+        android:label="me_fragment"
+        tools:layout="@layout/me_fragment" />
+
 </navigation>
