@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.navigationview.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.navigationview.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.navigationview.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.navigationview.ui.recyclerview.DetailFragment"
+        android:label="商品详情"
+        tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/nav_recyclerview"
+        android:name="com.example.navigationview.ui.recyclerview.RecyclerViewFragment"
+        android:label="所有品牌"
+        tools:layout="@layout/fragment_recyclerview" />
+    <fragment
+        android:id="@+id/nav_viewpaper"
+        android:name="com.example.navigationview.ui.viewpaper.ViewPaperFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_viewpaper" />
+    <fragment
+        android:id="@+id/nav_library"
+        android:name="com.example.navigationview.ui.library.LibraryFragment"
+        android:label="产品添加" />
+    <fragment
+        android:id="@+id/nav_editbook"
+        android:name="com.example.navigationview.ui.library.EditBookFragment"
+        android:label="产品信息修改" />
+</navigation>
