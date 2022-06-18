@@ -62,7 +62,7 @@ public class EditBookFragment extends Fragment {
     EditText price;
     EditText info;
     //http
-    String id;
+    int id;
     private List<HashMap<String,Object>> list=new ArrayList<HashMap<String,Object>>();
     private List<HashMap<String,Object>> mData=new ArrayList<HashMap<String,Object>>();
     String deletefileurl;
@@ -72,7 +72,7 @@ public class EditBookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_editbook, container, false);
-        id=getArguments().getString("id");
+        id=getArguments().getInt("id");
         // 自动完成文本框
         brand = (AutoCompleteTextView) view.findViewById(R.id.brand);
         ArrayAdapter<String> adapterauto = new ArrayAdapter<String>(getActivity(),
@@ -135,7 +135,7 @@ public class EditBookFragment extends Fragment {
                 RequestParams params = new RequestParams(url);
                 //post
                 params.setMultipart(true);
-                params.addBodyParameter("id", id);
+                params.addParameter("id", id);
                 params.addBodyParameter("brand", txtbrand);
                 params.addBodyParameter("earname", txtearname);
                 params.addBodyParameter("sellingtime", txtsellingtime);
@@ -178,7 +178,7 @@ public class EditBookFragment extends Fragment {
         //String url = "http://172.16.26.242:8080/androidweb/SelectServlet";
         RequestParams params = new RequestParams(url);
         //get
-        params.addQueryStringParameter("id", id);
+        params.addParameter("id", id);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

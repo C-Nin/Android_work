@@ -56,12 +56,14 @@ public class SlideshowFragment extends Fragment {
         recyclerView = view.findViewById(R.id.text_slideshow);
 
         getData();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));        adapter = new MySlideshowAdapter();
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        adapter = new MySlideshowAdapter();
         recyclerView.setAdapter(adapter);
         return view;
     }
     private void getData(){
-        String url=new MyApplication().selectallurl;
+        String url=new MyApplication().selectmiurl;
         RequestParams params=new RequestParams(url);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
@@ -122,7 +124,7 @@ public class SlideshowFragment extends Fragment {
             holder.brand.setText((String)mData.get(position).get("brand"));
             holder.earname.setText((String)mData.get(position).get("earname"));
             holder.sellingtime.setText((String)mData.get(position).get("sellingtime"));
-            holder.price.setText((String)mData.get(position).get("price"));
+            holder.price.setText((String) mData.get(position).get("price"));
             holder.info.setText((String)mData.get(position).get("info"));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

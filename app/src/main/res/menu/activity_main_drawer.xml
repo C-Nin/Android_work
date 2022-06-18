@@ -9,15 +9,15 @@
             android:icon="@drawable/index"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_recyclerview"
+            android:id="@+id/alldataFragment"
             android:icon="@drawable/pinpai"
             android:title="所有品牌" />
         <item
-            android:id="@+id/nav_viewpaper"
+            android:id="@+id/highendFragment"
             android:icon="@drawable/ear"
             android:title="高端品牌" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/lowenddataFragment"
             android:icon="@drawable/tejia"
             android:title="@string/menu_slideshow" />
         <item

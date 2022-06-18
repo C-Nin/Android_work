@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,15 +56,15 @@ public class RecyclerViewFragment extends Fragment {
         recyclerView=view.findViewById(R.id.recycler_view);
        //http
         getData();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));//垂直线性布局
-        // recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));//线性宫格显示，类似gridview
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));//垂直线性布局
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));//线性宫格显示，类似gridview
         // recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, OrientationHelper.VERTICAL));//线性宫格显示类似瀑布流
         adapter=new MyRecycleViewAdapter();
         recyclerView.setAdapter(adapter);
         return view;
     }
     private void getData() {
-        String url=new MyApplication().selectallurl;
+        String url=new MyApplication().selecedifierturl;
         //String url = "http://172.16.26.242:8080/androidweb/ListJsonServlet";
         RequestParams params = new RequestParams(url);
         x.http().get(params, new Callback.CommonCallback<String>() {
@@ -138,7 +139,7 @@ public class RecyclerViewFragment extends Fragment {
                 public void onClick(View v) {
                     NavController navController= Navigation.findNavController(getActivity(),R.id.nav_host_fragment);
                     Bundle bundle=new Bundle();
-                    bundle.putString("id",(String)mData.get(position).get("id"));
+                    bundle.putInt("id", (Integer) mData.get(position).get("id"));
                     navController.navigate(R.id.detailFragment,bundle);
 
                 }

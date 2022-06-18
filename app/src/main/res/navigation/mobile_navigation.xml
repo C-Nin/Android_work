@@ -51,17 +51,32 @@
     <activity
         android:id="@+id/login"
         android:name="com.example.navigationview.Login"
-        android:label="activity_login"
+        android:label="登录"
         tools:layout="@layout/activity_login" />
     <activity
         android:id="@+id/registeredActivity"
         android:name="com.example.navigationview.RegisteredActivity"
-        android:label="activity_registered"
+        android:label="注册"
         tools:layout="@layout/activity_registered" />
     <fragment
         android:id="@+id/me"
         android:name="com.example.navigationview.ui.me.me"
-        android:label="me_fragment"
+        android:label="我的"
         tools:layout="@layout/me_fragment" />
+    <fragment
+        android:id="@+id/alldataFragment"
+        android:name="com.example.navigationview.ui.alldata.AlldataFragment"
+        android:label="所有产品"
+        tools:layout="@layout/alldata_fragment" />
+    <fragment
+        android:id="@+id/highendFragment"
+        android:name="com.example.navigationview.ui.highenddata.HighendFragment"
+        android:label="高端产品"
+        tools:layout="@layout/highend_fragment" />
+    <fragment
+        android:id="@+id/lowenddataFragment"
+        android:name="com.example.navigationview.ui.lowenddata.LowenddataFragment"
+        android:label="特价产品"
+        tools:layout="@layout/lowenddata_fragment" />
 
 </navigation>

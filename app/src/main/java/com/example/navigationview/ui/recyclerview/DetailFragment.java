@@ -35,7 +35,7 @@ public class DetailFragment extends Fragment {
     private DetailViewModel mViewModel;
     private List<HashMap<String,Object>> list=new ArrayList<HashMap<String,Object>>();
     private List<HashMap<String,Object>> mData=new ArrayList<HashMap<String,Object>>();
-    String id;
+    int id;
 
     public static DetailFragment newInstance() {
         return new DetailFragment();
@@ -46,12 +46,12 @@ public class DetailFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view=inflater.inflate(R.layout.fragment_detail, container, false);
-        id=getArguments().getString("id");
+        id=getArguments().getInt("id");
         String url=new MyApplication().selectbyidurl;
         // String url = "http://172.16.26.242:8080/androidweb/SelectServlet";
         RequestParams params = new RequestParams(url);
         //get
-        params.addQueryStringParameter("id", id);
+        params.addParameter("id", id);
 
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
@@ -105,7 +105,7 @@ public class DetailFragment extends Fragment {
                 // String url = "http://172.16.26.242:8080/androidweb/DeleteServlet";
                 RequestParams params = new RequestParams(url);
                 //get
-                params.addQueryStringParameter("id", id);
+                params.addParameter("id", id);
                 x.http().get(params, new Callback.CommonCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
@@ -137,7 +137,7 @@ public class DetailFragment extends Fragment {
             public void onClick(View v) {
                 NavController navController= Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
                 Bundle bundle=new Bundle();
-                bundle.putString("id",id);
+                bundle.putInt("id",id);
                 navController.navigate(R.id.nav_editbook,bundle);
             }
         });

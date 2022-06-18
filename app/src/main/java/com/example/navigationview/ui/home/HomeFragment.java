@@ -39,13 +39,13 @@ public class HomeFragment extends Fragment {
                 int id=item.getItemId();
                 NavController navController=Navigation.findNavController(getActivity(),R.id.nav_host_fragment2);
                 if(id==R.id.navigation_home) {
-                    navController.navigate(R.id.nav_recyclerview);
+                    navController.navigate(R.id.alldataFragment2);
                 }
                 if(id==R.id.navigation_dashboard) {
-                    navController.navigate(R.id.nav_gallery);
+                    navController.navigate(R.id.highendFragment2);
                 }
                 if(id==R.id.navigation_notifications) {
-                    navController.navigate(R.id.nav_slideshow);
+                    navController.navigate(R.id.lowenddataFragment2);
                 }
 
                 return true;

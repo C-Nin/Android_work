@@ -41,7 +41,7 @@ import androidx.navigation.Navigation;
 public class LibraryFragment extends Fragment {
     // 自动完成文本框
     AutoCompleteTextView brand;
-    String[] brands = { "华为", "小米", "AIRPODS" };
+    String[] brands = { "华为", "小米", "漫步者" };
     // 退出按钮
     static final int EXIT_DIALOG_ID = 0;
     // 出版日期

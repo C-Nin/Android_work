@@ -19,6 +19,21 @@
     <fragment
         android:id="@+id/nav_recyclerview"
         android:name="com.example.navigationview.ui.recyclerview.RecyclerViewFragment"
-        android:label="fragment_recyclerview"
+        android:label="漫步者"
         tools:layout="@layout/fragment_recyclerview" />
+    <fragment
+        android:id="@+id/alldataFragment2"
+        android:name="com.example.navigationview.ui.alldata.AlldataFragment"
+        android:label="全部品牌"
+        tools:layout="@layout/alldata_fragment" />
+    <fragment
+        android:id="@+id/highendFragment2"
+        android:name="com.example.navigationview.ui.highenddata.HighendFragment"
+        android:label="高端产品"
+        tools:layout="@layout/highend_fragment" />
+    <fragment
+        android:id="@+id/lowenddataFragment2"
+        android:name="com.example.navigationview.ui.lowenddata.LowenddataFragment"
+        android:label="特价产品"
+        tools:layout="@layout/lowenddata_fragment" />
 </navigation>
