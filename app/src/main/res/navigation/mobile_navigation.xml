@@ -78,5 +78,15 @@
         android:name="com.example.navigationview.ui.lowenddata.LowenddataFragment"
         android:label="特价产品"
         tools:layout="@layout/lowenddata_fragment" />
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.example.navigationview.ui.collection.CollectionFragment"
+        android:label="收藏夹"
+        tools:layout="@layout/collection_fragment" />
+    <fragment
+        android:id="@+id/collectselectFragment"
+        android:name="com.example.navigationview.ui.collectionselect.CollectselectFragment"
+        android:label="详情"
+        tools:layout="@layout/collectselect_fragment" />
 
 </navigation>

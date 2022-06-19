@@ -24,6 +24,10 @@ public class MyApplication extends Application {
     public String selecedifierturl="http://172.17.141.43:8000/EDIFIER/";
     public String selecthighendurl="http://172.17.141.43:8000/highend/";
     public String selectlowendurl="http://172.17.141.43:8000/lowend/";
+    public String selectCollectionurl="http://172.17.141.43:8000/Collectionselect/";
+    public String selectCollectionbyidurl="http://172.17.141.43:8000/Collectionselect2/";
+    public String Collectionaddurl="http://172.17.141.43:8000/Collectionadd/";
+    public String Collectiondeleteurl="http://172.17.141.43:8000/Collectiondelete/";
 
     @Override
     public void onCreate() {

@@ -1,6 +1,8 @@
 package com.example.navigationview.ui.recyclerview;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,6 +141,57 @@ public class DetailFragment extends Fragment {
                 Bundle bundle=new Bundle();
                 bundle.putInt("id",id);
                 navController.navigate(R.id.nav_editbook,bundle);
+            }
+        });
+        Button collection=view.findViewById(R.id.collection);
+        collection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String txtbrand = mData.get(0).get("brand").toString();
+                String txtearname = mData.get(0).get("earname").toString();
+                String txtsellingtime = mData.get(0).get("sellingtime").toString();
+                String txtprice = mData.get(0).get("price").toString();
+                String txtinfo = mData.get(0).get("info").toString();
+                String txtprcture= mData.get(0).get("picture").toString();
+
+                String url=new MyApplication().Collectionaddurl;
+                //String url="http://172.16.26.242:8080/androidweb/InsertServlet";
+                RequestParams params = new RequestParams(url);
+                //post
+                params.setMultipart(true);
+                params.addBodyParameter("brand", txtbrand);
+                params.addBodyParameter("earname", txtearname);
+                params.addBodyParameter("sellingtime", txtsellingtime);
+                params.addBodyParameter("price", txtprice);
+                params.addBodyParameter("info", txtinfo);
+                params.addBodyParameter("picture", txtprcture);
+                final ProgressDialog dia = new ProgressDialog(getActivity());
+                dia.setMessage("上传中....");
+                dia.show();
+                x.http().post(params, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(x.app(), result, Toast.LENGTH_LONG).show();
+                        //加载成功回调，返回获取到的数据
+                        Log.i("cjf", "onSuccess: " + result);
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        Toast.makeText(x.app(), ex.toString(), Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFinished() {
+                        dia.dismiss();//加载完成
+                    }
+                });
             }
         });
         return  view;

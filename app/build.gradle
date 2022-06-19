@@ -42,4 +42,5 @@ dependencies {
     //http
     compile files('libs/fastjson-1.2.5.jar')
     implementation 'org.xutils:xutils:3.3.40'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 }

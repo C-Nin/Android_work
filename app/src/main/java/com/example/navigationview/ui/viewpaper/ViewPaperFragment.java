@@ -60,7 +60,7 @@ public class ViewPaperFragment extends Fragment {
         titles = new ArrayList<>();
         titles.add("华为");
         titles.add("小米");
-        titles.add("Airpods");
+        titles.add("漫步者");
         FragmentViewPagerAdapter adapter = new FragmentViewPagerAdapter(getChildFragmentManager(), fragments, titles);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

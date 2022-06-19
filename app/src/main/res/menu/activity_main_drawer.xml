@@ -9,17 +9,13 @@
             android:icon="@drawable/index"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/alldataFragment"
-            android:icon="@drawable/pinpai"
-            android:title="所有品牌" />
-        <item
-            android:id="@+id/highendFragment"
+            android:id="@+id/nav_viewpaper"
             android:icon="@drawable/ear"
-            android:title="高端品牌" />
+            android:title="常用品牌" />
         <item
-            android:id="@+id/lowenddataFragment"
+            android:id="@+id/collectionFragment"
             android:icon="@drawable/tejia"
-            android:title="@string/menu_slideshow" />
+            android:title="收藏夹" />
         <item
             android:id="@+id/nav_library"
             android:icon="@drawable/add"
@@ -27,7 +23,7 @@
 
         <item
             android:id="@+id/me"
-            android:icon="@drawable/add"
+            android:icon="@drawable/pinpai"
             android:title="我的" />
     </group>
 </menu>
