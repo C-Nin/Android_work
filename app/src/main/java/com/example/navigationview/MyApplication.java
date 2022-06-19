@@ -19,7 +19,6 @@ public class MyApplication extends Application {
     public String deletebyidurl="http://172.17.141.43:8000/delete/";
     public String updatebyidurl="http://172.17.141.43:8000/update/";
     public String imagebaseurl="http://172.17.141.43/android/image2/";
-
     public String selectmiurl="http://172.17.141.43:8000/mi/";
     public String selecthuaweiurl="http://172.17.141.43:8000/HUAWEI/";
     public String selecedifierturl="http://172.17.141.43:8000/EDIFIER/";

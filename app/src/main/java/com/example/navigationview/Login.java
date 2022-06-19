@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             case R.id.btn_Login:
                 String name = et_User.getText().toString().trim();
                 String password = et_Psw.getText().toString().trim();
-                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)) {
+                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)) {  //账号密码不为空
                     ArrayList<User> data = mDBOpenHelper.getAllData();
                     boolean match = false;
                     boolean match2 = false;
@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         User user = data.get(i);
                         if ((name.equals(user.getName()) && password.equals(user.getPassword()))||
                                 (name.equals(user.getEmail())&&password.equals(user.getPassword()))||
-                                (name.equals(user.getPhonenum())&&password.equals(user.getPassword()))) {
+                                (name.equals(user.getPhonenum())&&password.equals(user.getPassword()))) { //用户名、邮箱、号码都可以用作登录
                             userName = user.getName();
                             match = true;
                             if(cb_rmbPsw.isChecked()){
