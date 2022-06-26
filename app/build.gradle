@@ -43,4 +43,8 @@ dependencies {
     compile files('libs/fastjson-1.2.5.jar')
     implementation 'org.xutils:xutils:3.3.40'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+
+    compile files('libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')
+    compile files('libs/classes.jar')
+    compile files('libs/eventbus-3.0.0.jar')
 }

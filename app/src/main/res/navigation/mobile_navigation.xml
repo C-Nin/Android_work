@@ -88,5 +88,11 @@
         android:name="com.example.navigationview.ui.collectionselect.CollectselectFragment"
         android:label="详情"
         tools:layout="@layout/collectselect_fragment" />
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.example.navigationview.ui.card.CardFragment"
+        android:label="card_fragment"
+        tools:layout="@layout/card_fragment" />
+
 
 </navigation>

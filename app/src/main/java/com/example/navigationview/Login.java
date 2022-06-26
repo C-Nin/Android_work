@@ -1,25 +1,42 @@
 package com.example.navigationview;
 
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.Objects;
+import android.os.Bundle;
+
+import com.example.navigationview.mqtt.MqttManager;
+import com.example.navigationview.ui.card.CardFragment;
+import com.lichfaker.log.Logger;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
     private DBOpenHelper mDBOpenHelper;
@@ -27,6 +44,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private CheckBox cb_rmbPsw;
     private String userName;
     private SharedPreferences.Editor editor;
+    public static final String rfidurl = "tcp://120.79.130.114:1883";
+    //public static final String URL = "tcp://broker.hivemq.com:1883";
+    private String rfiduserName = "text";
+    private String rfidpassword = "text123";
+    private String rfidclientId = "1940707217";
+    private String mesg;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -76,7 +100,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             case R.id.btn_Login:
                 String name = et_User.getText().toString().trim();
                 String password = et_Psw.getText().toString().trim();
-                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)) {  //账号密码不为空
+                if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(password)) {
                     ArrayList<User> data = mDBOpenHelper.getAllData();
                     boolean match = false;
                     boolean match2 = false;
@@ -84,7 +108,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         User user = data.get(i);
                         if ((name.equals(user.getName()) && password.equals(user.getPassword()))||
                                 (name.equals(user.getEmail())&&password.equals(user.getPassword()))||
-                                (name.equals(user.getPhonenum())&&password.equals(user.getPassword()))) { //用户名、邮箱、号码都可以用作登录
+                                (name.equals(user.getPhonenum())&&password.equals(user.getPassword()))) {
                             userName = user.getName();
                             match = true;
                             if(cb_rmbPsw.isChecked()){
@@ -137,7 +161,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     Toast.makeText(this, "请输入你的用户名或密码", Toast.LENGTH_SHORT).show();
                 }
                 break;
+
+
         }
     }
+
 
 }
