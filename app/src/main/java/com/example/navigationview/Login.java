@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -26,9 +27,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import android.os.Bundle;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.example.navigationview.mqtt.MqttManager;
 import com.example.navigationview.ui.card.CardFragment;
 import com.lichfaker.log.Logger;
@@ -36,6 +41,9 @@ import com.lichfaker.log.Logger;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
@@ -44,6 +52,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private CheckBox cb_rmbPsw;
     private String userName;
     private SharedPreferences.Editor editor;
+    private List<HashMap<String,Object>> list=new ArrayList<HashMap<String,Object>>();
+    private List<HashMap<String,Object>> mData=new ArrayList<HashMap<String,Object>>();
     public static final String rfidurl = "tcp://120.79.130.114:1883";
     //public static final String URL = "tcp://broker.hivemq.com:1883";
     private String rfiduserName = "text";
@@ -82,9 +92,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         et_Psw = findViewById(R.id.et_Psw);
         cb_rmbPsw = findViewById(R.id.cb_rmbPsw);
         Button btn_Login = findViewById(R.id.btn_Login);
+        Button btn_Login2 = findViewById(R.id.button2);
         TextView tv_register = findViewById(R.id.tv_Register);
         //设置点击事件监听器
         btn_Login.setOnClickListener( this);
+        btn_Login2.setOnClickListener( this);
         tv_register.setOnClickListener(this);
     }
 
@@ -162,7 +174,47 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 }
                 break;
 
+            case R.id.button2:
+                //code
+                String url=new MyApplication().rfid2select;
+                // String url = "http://172.16.26.242:8080/androidweb/DeleteServlet";
+                RequestParams params = new RequestParams(url);
+                //get
+                x.http().get(params, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        list = JSON.parseObject(result,
+                                new TypeReference<List<HashMap<String, Object>>>() {
+                                });
+                        mData.addAll(list);
+                        Log.d("aa", String.valueOf(mData));
+                        int i=mData.size();
+                        if(mData==null){
+                            Toast.makeText(x.app(), "卡号不存在", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(x.app(), "登录成功", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(Login.this, MainActivity.class);//跳转到注册界面
+                            startActivity(intent);
+                            finish();
 
+                        }
+                    }
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onFinished() {
+
+                    }
+                });
+                break;
         }
     }
 

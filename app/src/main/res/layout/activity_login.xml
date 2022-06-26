@@ -10,8 +10,11 @@
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="557dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -136,6 +139,20 @@
         app:layout_constraintTop_toTopOf="@+id/guideline5"
         app:layout_constraintVertical_bias="0.538" />
 
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="348dp"
+        android:layout_height="53dp"
+        android:background="#0099ff"
+        android:text="刷卡登录"
+        android:textColor="#FDFAFA"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82" />
 
     <TextView
         android:id="@+id/tv_Register"

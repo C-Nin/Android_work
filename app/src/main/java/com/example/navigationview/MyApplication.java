@@ -45,6 +45,8 @@ public class MyApplication extends Application {
     public String Collectionaddurl="http://172.17.142.164:8000/Collectionadd/";
     public String Collectiondeleteurl="http://172.17.142.164:8000/Collectiondelete/";
     public String rfidselect="http://172.17.142.164:8000/rfidselect/";
+    public String rfid2select="http://172.17.142.164:8000/rfid2select/";
+    public String rfid2add="http://172.17.142.164:8000/rfid2add/";
     @Override
     public void onCreate() {
         super.onCreate();

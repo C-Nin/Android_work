@@ -2,6 +2,7 @@ package com.example.navigationview.ui.me;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,23 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.bumptech.glide.Glide;
 import com.example.navigationview.MyApplication;
 import com.example.navigationview.R;
-import com.example.navigationview.mqtt.MqttManager;
-import com.example.navigationview.ui.collection.CollectionFragment;
 import com.example.navigationview.ui.viewpaper.ViewPaperViewModel;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.lichfaker.log.Logger;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -51,12 +43,19 @@ public class me extends Fragment {
     private String rfidpassword = "text123";
     private String rfidclientId = "1940707217";
     private String mesg;
+    static String add;
 
     public static me newInstance() {
         return new me();
     }
+    public static void setadd(String add){ me.add=add; }
+    public static String getadd(){ return add; }
+
     private List<HashMap<String,Object>> list=new ArrayList<HashMap<String,Object>>();
     private List<HashMap<String,Object>> mData=new ArrayList<HashMap<String,Object>>();
+    private List<HashMap<String,Object>> list2=new ArrayList<HashMap<String,Object>>();
+    private List<HashMap<String,Object>> mData2=new ArrayList<HashMap<String,Object>>();
+
     private ViewPaperViewModel viewPaperViewModel;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -93,7 +92,9 @@ public class me extends Fragment {
                         Log.d("a", String.valueOf(mData));
                         //showpicture
                         int i =mData.size();
+                        setadd(mData.get(i-1).get("rfid").toString());
                         urfid.setText(mData.get(i-1).get("rfid").toString());
+                        Log.d("b", String.valueOf(add));
                     }
                     @Override
                     public void onError(Throwable ex, boolean isOnCallback) {
@@ -107,6 +108,43 @@ public class me extends Fragment {
                     @Override
                     public void onFinished() {
 
+                    }
+                });
+
+                String url2=new MyApplication().rfid2add;
+                // String url = "http://172.16.26.242:8080/androidweb/DeleteServlet";
+                RequestParams params2 = new RequestParams(url2);
+                params2.setMultipart(true);
+                Log.d("ccc", String.valueOf(add));
+                String add2=getadd();
+                params2.addBodyParameter("rfids", add2);
+                Log.d("ccc", String.valueOf(add2));
+                final ProgressDialog dia = new ProgressDialog(getActivity());
+                dia.setMessage("上传中....");
+                dia.show();
+                //get
+                x.http().get(params2, new Callback.CommonCallback<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        Toast.makeText(x.app(), result, Toast.LENGTH_LONG).show();
+                        //加载成功回调，返回获取到的数据
+                        Log.i("cjf", "onSuccess: " + result);
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        Toast.makeText(x.app(), ex.toString(), Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFinished() {
+                        dia.dismiss();//加载完成
                     }
                 });
             }
